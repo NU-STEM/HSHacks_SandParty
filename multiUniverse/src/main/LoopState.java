@@ -26,7 +26,8 @@ public class LoopState{
 				myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				myFrame.setVisible(true);
 				LoopState myDeck = new LoopState();
-				myFrame.add(myFrame);
+					//no panel to add yet
+				//myFrame.add(myDeck);
 				//myFrame.addKeyListener(myDeck); change this if we are adding buttons
 				myDeck.enterGameLoop();
 			
@@ -36,8 +37,6 @@ public class LoopState{
 		public void enterGameLoop(){
 			while(running){
 				lastLogicTime = System.nanoTime();
-				System.out.println("Enter Logic Function, Foc-us");
-				
 				logicFunction();
 				while((System.nanoTime()-lastLogicTime)<Target_Time_Between_Logic){
 					System.out.println("Enter Render Function, Rend-her");
