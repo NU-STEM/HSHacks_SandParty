@@ -19,7 +19,7 @@ public class StateManager extends JFrame{
 		mainMenu.setIgnoreRepaint(true);
 		gameLoop.setIgnoreRepaint(true);
 		this.setIgnoreRepaint(true);
-		currentState = gameLoop;
+		currentState = mainMenu;
 		this.add(currentState);
 		currentState.setUp(this);
 		this.paintComponents(this.getGraphics());
@@ -36,7 +36,7 @@ public class StateManager extends JFrame{
 			State lastState =currentState;
 			
 			this.remove(lastState);
-			currentState = gameLoop;
+			currentState = mainMenu;
 			this.add(currentState);
 			lastState.deactivate();
 			this.repaint();

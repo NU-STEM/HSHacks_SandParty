@@ -8,8 +8,9 @@ import javax.swing.JFrame;
 public class MainProgram {
 	public static void main(String[] args) {
 		//Frame
-			MenuState ms = new MenuState();
-			ms.activate();
+			//MenuState ms = new MenuState();
+			StateManager sm = new StateManager();
+			sm.activate();
 			
 			
 		//End
