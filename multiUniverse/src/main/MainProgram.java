@@ -6,7 +6,26 @@ import javax.swing.JFrame;
 //Can
 //Yoshi
 public class MainProgram {
-	//static StateManager sm;
+	public static int[] gameWindowSize = {1280,720};
+	
+	public static void main(String[] args0){
+		
+		JFrame gameWindow = new JFrame();
+		GameDisplay gameDisplay = new GameDisplay();
+		
+		gameWindow.setSize(gameWindowSize[0], gameWindowSize[1]);
+		gameWindow.setVisible(true);
+		gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		gameWindow.setLocationRelativeTo(null);
+		gameWindow.add(gameDisplay);
+		gameDisplay.startGameLoop();
+	}
+	
+}	
+	
+	
+	
+/*	//static StateManager sm;
 	public static void main(String[] args) {
 		//Frame
 			//MenuState ms = new MenuState();
@@ -16,5 +35,4 @@ public class MainProgram {
 			
 			
 		//End
-	}
-}
+	}*/
