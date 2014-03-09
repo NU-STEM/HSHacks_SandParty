@@ -68,9 +68,10 @@ public class LoopState extends State implements KeyListener{
 					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 					};
 				//map
+					int blockSize = 45;
 					ArrayList<Rectangle> leveloneR = new ArrayList<Rectangle>();
 					Rectangle Rectangle = new Rectangle(0,0,100,100);
-					Rectangle Person = new Rectangle(0,0,100,100);
+					Rectangle Person = new Rectangle(100,35*blockSize,70,70);
 					final double Logic_Hertz = 60;
 					final double Target_Time_Between_Logic=(1000000000/Logic_Hertz);
 					final double Render_Hertz = 60;
@@ -88,7 +89,7 @@ public class LoopState extends State implements KeyListener{
 					public boolean ButtonSpace = false;
 					public boolean ButtonP = false;
 					double speed = 5;
-					int blockSize = 45;
+					
 				//End
 		
 		public static void main(String[] args) {
@@ -109,8 +110,8 @@ public class LoopState extends State implements KeyListener{
 		}
 		
 		public void enterGameLoop(){
+			
 			//Converts the 2D array into a rectangle array
-				
 				for(int i=0; i<levelone.length ;i++){
 					int offsetY = blockSize * i;
 					for(int j=0; j<levelone[i].length ;j++){
@@ -150,21 +151,28 @@ public class LoopState extends State implements KeyListener{
 		
 		public void logicFunction(){
 			//button Mapping
+				int personOldX = Person.x;
+				int personOldY = Person.y;
+				int cameraOldX = (int) cameraX;
+				int cameraOldY = (int) cameraY;
 				if (ButtonD == true){			
 					cameraX += speed;
+					Person.x +=speed;
 				}
 				
 				if (ButtonA == true){	
 					cameraX -= speed;
+					Person.x -=speed;
 				}
 				
 				if (ButtonW == true){
 					cameraY -= speed;
-					
+					Person.y -= speed;
 				}
 				
 				if (ButtonS == true){
 					cameraY += speed;
+					Person.y += speed;
 				}
 				
 				if (ButtonSpace == true){
@@ -176,7 +184,14 @@ public class LoopState extends State implements KeyListener{
 				}
 				
 				for(Rectangle r:leveloneR){
-					System.out.println(Person.intersects(r));
+					//System.out.println(Person.intersects(r));
+					if (Person.intersects(r) == true){
+						Person.x = personOldX;
+						Person.y = personOldY;
+						cameraX = cameraOldX;
+						cameraY = cameraOldY;
+						System.out.println("Hit");
+					}
 				}
 				
 			//end
@@ -202,36 +217,19 @@ public class LoopState extends State implements KeyListener{
 
 					
 				//Drawing First Map
+					for(Rectangle r:leveloneR){
+						//System.out.println(Person.intersects(r));
+							  g2d.setColor(Color.black);
+					    	  g2d.fillRect((int)(r.x-cameraX),(int)(r.y-cameraY),blockSize,blockSize);
+					}
+
 					
-					for(int y=0;y<levelone.length;y++){
-							int ypos = (int) ((blockSize*y) - cameraY);
-						   for(int x=0;x<levelone[0].length;x++){
-							   int xpos = (int) ((blockSize*x)- cameraX);
-						     switch(levelone[y][x]){
-						     	//switch is compares x and y with each case, case
-						      case 0:
-						    	 GradientPaint gp = new GradientPaint(0F, 0F, Color.gray, 450F, 450F, Color.white, true);
-						    	 g2d.setPaint(gp);
-						    	 g2d.fillRect(xpos,ypos,blockSize,blockSize);
-						       break;
-						       //break == break out of the loop so the other code doesn't get ran
-						      case 1:
-						    	  g2d.setColor(Color.black);
-						    	  g2d.fillRect(xpos,ypos,blockSize,blockSize);
-						       break;
-						      case 2: 
-						    	  g2d.setColor(Color.blue);
-						    	  g2d.fillRect(xpos,ypos,blockSize,blockSize);
-						       break;
-						     }
-						   }  
-						}
-			//end
-			//Drawing the Person
-					Rectangle Person = new Rectangle(300, (int)cameraY, 70, 70);
-					g2d.setColor(Color.black);
-					g2d.fill(Person);
-			//end
+					//Drawing the Person
+					Rectangle RenderPerson = new Rectangle((int)(Person.x-cameraX), (int)(Person.y-cameraY), 70, 70);
+					g2d.setColor(Color.blue);
+					
+					g2d.fill(RenderPerson);
+					//end
 		}
 
 		@Override
