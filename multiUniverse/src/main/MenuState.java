@@ -19,17 +19,19 @@ public class MenuState extends State implements ActionListener{
 	private JButton btn = new JButton("Play");
 	private JButton btn2 = new JButton("Quit");
 	private JButton btn3 = new JButton("Credits");
+	
+	StateManager parent = null;
 	@Override
 	public void activate(){
 		running = true;
-		StateManager sm = new StateManager();
-		MenuState ms = new MenuState();
-		sm.add(ms);
+		//StateManager sm = new StateManager();
+		//MenuState ms = new MenuState();
+		parent.add(this);
 		//myFrame.setSize(500, 500);
 		//myFrame.setLocationRelativeTo(null);
 		//myFrame.setVisible(true);
 		//myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ms.setLayout(null);
+		parent.setLayout(null);
 		
 	   
 	    
@@ -38,7 +40,7 @@ public class MenuState extends State implements ActionListener{
 	    btn.addActionListener(this);
 	    btn.setActionCommand("Loop");
 	    btn.setBounds(190, 300, 120, 30);
-		ms.add(btn);
+	    parent.add(btn);
 	    
         btn2.setFont(new Font("SansSerif", Font.ITALIC, 20));
 	    
@@ -53,9 +55,9 @@ public class MenuState extends State implements ActionListener{
 	    btn3.setBounds(190, 400, 120, 30);
 		
 		
-		ms.add(btn);
-		ms.add(btn2);
-		ms.add(btn3);
+	    parent.add(btn);
+	    parent.add(btn2);
+	    parent.add(btn3);
 		while(running){
 			try {
 				Thread.sleep(500);
@@ -82,7 +84,7 @@ public class MenuState extends State implements ActionListener{
 		//activate();
 		//this.setLayout(null);
 	}
-	StateManager parent = null;
+	//parent = null;
 	//JButton btn = new JButton("Play");
 	
 //	public void paint(Graphics g){
