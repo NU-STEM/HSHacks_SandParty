@@ -70,12 +70,13 @@ public class LoopState extends State implements KeyListener{
 				//map
 					int blockSize = 45;
 					ArrayList<Rectangle> leveloneR = new ArrayList<Rectangle>();
-					Rectangle Rectangle = new Rectangle(0,0,100,100);
+					//Rectangle Rectangle = new Rectangle(0,0,100,100);
 					Rectangle Person = new Rectangle(100,35*blockSize,70,70);
 					final double Logic_Hertz = 60;
 					final double Target_Time_Between_Logic=(1000000000/Logic_Hertz);
 					final double Render_Hertz = 60;
 					final double Target_Time_Between_Render = (1000000000/Render_Hertz);
+					private boolean OnGround = true;
 					double lastLogicTime = System.nanoTime();
 					double lastRenderTime = System.nanoTime();
 					boolean running = true;
@@ -89,6 +90,9 @@ public class LoopState extends State implements KeyListener{
 					public boolean ButtonSpace = false;
 					public boolean ButtonP = false;
 					double speed = 5;
+					private static final double JUMP_SPEED = 24;
+					private static final double GRAVITY = 1.0;
+					double time = .5;
 					
 				//End
 		
@@ -108,6 +112,7 @@ public class LoopState extends State implements KeyListener{
 					myDeck.enterGameLoop();
 				//end
 		}
+		
 		
 		public void enterGameLoop(){
 			
@@ -176,8 +181,16 @@ public class LoopState extends State implements KeyListener{
 				}
 				
 				if (ButtonSpace == true){
+					while (ButtonSpace == true){
+							cameraY -=speed;
+							Person.y -= speed;
+						}
+					}
 					
-				}
+					
+					
+		//}
+				
 				
 				if (ButtonSpace == false){
 					
