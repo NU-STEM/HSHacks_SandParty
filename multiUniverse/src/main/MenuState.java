@@ -15,9 +15,10 @@ import javax.swing.JPanel;
 
 public class MenuState extends State implements ActionListener{
 	private boolean running = true;
-	int x = 0;
-	JButton btn = new JButton("Play");
-	JButton btn2 = new JButton("Quit");
+	private int x = 0;
+	private JButton btn = new JButton("Play");
+	private JButton btn2 = new JButton("Quit");
+	private JButton btn3 = new JButton("Credits");
 	@Override
 	public void activate(){
 		running = true;
@@ -40,8 +41,24 @@ public class MenuState extends State implements ActionListener{
 	    btn.setBounds(190, 300, 120, 30);
 		ms.add(btn);
 	    
+        btn2.setFont(new Font("SansSerif", Font.ITALIC, 20));
+	    
+	    btn2.addActionListener(this);
+	    btn2.setActionCommand("Quit");
+		btn2.addActionListener(this);
+	    btn2.setBounds(190, 350, 120, 30);
+	    
+        btn3.setFont(new Font("SansSerif", Font.ITALIC, 20));
+	    
+	    btn3.addActionListener(this);
+	    btn3.setActionCommand("Credits");
+		btn3.addActionListener(this);
+	    btn3.setBounds(190, 400, 120, 30);
 		
 		
+		ms.add(btn);
+		ms.add(btn2);
+		ms.add(btn3);
 		while(running){
 			try {
 				Thread.sleep(500);
@@ -89,8 +106,12 @@ public class MenuState extends State implements ActionListener{
 		if("Loop".equals(arg0.getActionCommand())){
 			//parent.switchState("loop");
 			System.out.println("Loop Pressed!");
+		}else if("Quit".equals(arg0.getActionCommand())){
+			System.out.println("Quit Pressed!");
+		}else if ("Credits".equals(arg0.getActionCommand())){
+			System.out.println("Credits Pressed!");
 		}
 		
 	}
-
+	
 }
