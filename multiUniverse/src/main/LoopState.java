@@ -12,6 +12,7 @@ import java.awt.Shape;
 import java.awt.Stroke;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
@@ -23,7 +24,7 @@ public class LoopState extends State implements KeyListener{
 	//Frames Per Second Math
 		//make map
 			int [][] levelone = new int[][]{
-					{1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 					{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 					{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 					{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -64,7 +65,7 @@ public class LoopState extends State implements KeyListener{
 					{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 					{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 					{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-					{1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 					};
 			int [][] leveltwo = new int[][]{
 					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -109,64 +110,68 @@ public class LoopState extends State implements KeyListener{
 					{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 					};
-		//map
-		Rectangle Rectangle = new Rectangle(0,0,100,100);
-		final double Logic_Hertz = 60;
-		final double Target_Time_Between_Logic=(1000000000/Logic_Hertz);
-		final double Render_Hertz = 60;
-		final double Target_Time_Between_Render = (1000000000/Render_Hertz);
-		double lastLogicTime = System.nanoTime();
-		double lastRenderTime = System.nanoTime();
-		boolean running = true;
-		double Interpolation = 0;
-		double cameraX;
-		double cameraY;
-		public boolean ButtonD = false;
-		public boolean ButtonW = false;
-		public boolean ButtonA = false;
-		public boolean ButtonS = false;
-		public boolean ButtonSpace = false;
-		public boolean ButtonP = false;
-	//End
+				//map
+					Rectangle Rectangle = new Rectangle(0,0,100,100);
+					final double Logic_Hertz = 60;
+					final double Target_Time_Between_Logic=(1000000000/Logic_Hertz);
+					final double Render_Hertz = 60;
+					final double Target_Time_Between_Render = (1000000000/Render_Hertz);
+					double lastLogicTime = System.nanoTime();
+					double lastRenderTime = System.nanoTime();
+					boolean running = true;
+					double Interpolation = 0;
+					double cameraX;
+					double cameraY;
+					public boolean ButtonD = false;
+					public boolean ButtonW = false;
+					public boolean ButtonA = false;
+					public boolean ButtonS = false;
+					public boolean ButtonSpace = false;
+					public boolean ButtonP = false;
+					double speed = 2;
+					int blockSize = 45;
+				//End
 		
 		public static void main(String[] args) {
 			
-			//Making the Panel and adding the frame
-				JFrame myFrame= new JFrame("multiUniverse");
-				myFrame.setSize(500,500);
-				myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				myFrame.setVisible(true);
-				myFrame.setLocationRelativeTo(null);
-				myFrame.setResizable(true);
-				LoopState myDeck = new LoopState();
-				myFrame.add(myDeck);
-				myFrame.paintComponents(myFrame.getGraphics());
-				
-				//myFrame.addKeyListener(myDeck); change this if we are adding buttons
-				myDeck.enterGameLoop();
-			//end
+				//Making the Panel and adding the frame
+					JFrame myFrame= new JFrame("multiUniverse");
+					myFrame.setSize(1920,1080);
+					myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					myFrame.setVisible(true);
+					myFrame.setLocationRelativeTo(null);
+					myFrame.setResizable(true);
+					LoopState myDeck = new LoopState();
+					myFrame.add(myDeck);
+					myFrame.paintComponents(myFrame.getGraphics());
+					myFrame.addKeyListener(myDeck);
+					myDeck.enterGameLoop();
+				//end
 		}
 		
 		public void enterGameLoop(){
 			
-			cameraX = 0;
-			cameraY = (levelone.length *25) -this.getHeight();
-			//cameraY = 0;
-			System.out.println(this.getHeight());
-			System.out.println(cameraY);
-			while(running){
-				lastLogicTime = System.nanoTime();
-				logicFunction();
+				cameraX = 0;
+				cameraY = (levelone.length *blockSize) -this.getHeight();
 				
-				while((System.nanoTime()-lastLogicTime)<Target_Time_Between_Logic){
-					lastRenderTime = System.nanoTime();
-					Interpolation = ((System.nanoTime() - lastLogicTime)/Target_Time_Between_Logic);
-					renderFunction(Interpolation);
-					while((System.nanoTime()-lastRenderTime)<Target_Time_Between_Render){
-						Thread.yield();
+			//cameraY = 0;
+				System.out.println(this.getHeight());
+				System.out.println(cameraY);
+			//the logic for determining the frames per socond
+				while(running){
+					lastLogicTime = System.nanoTime();
+					logicFunction();
+					
+					while((System.nanoTime()-lastLogicTime)<Target_Time_Between_Logic){
+						lastRenderTime = System.nanoTime();
+						Interpolation = ((System.nanoTime() - lastLogicTime)/Target_Time_Between_Logic);
+						renderFunction(Interpolation);
+						while((System.nanoTime()-lastRenderTime)<Target_Time_Between_Render){
+							Thread.yield();
+						}
 					}
 				}
-			}
+			//end
 		}
 		
 		public void renderFunction(double Interpolation){
@@ -174,7 +179,34 @@ public class LoopState extends State implements KeyListener{
 		}
 		
 		public void logicFunction(){
-			cameraX++;
+			//button Mapping
+				if (ButtonD == true){			
+					cameraX += speed;
+				}
+				
+				if (ButtonA == true){	
+					cameraX -= speed;
+				}
+				
+				if (ButtonW == true){
+					cameraY -= speed;
+					
+				}
+				
+				if (ButtonS == true){
+					cameraY += speed;
+				}
+				
+				if (ButtonSpace == true){
+					
+				}
+				
+				if (ButtonSpace == false){
+					
+				}
+			//end
+			//cameraX++;
+			//cameraY--;
 			
 		}
 		
@@ -192,113 +224,85 @@ public class LoopState extends State implements KeyListener{
 					Color map = new Color(255,255,255);
 					
 				//end
-					
-				//Drawing Background
-//					Rectangle2D.Float background = new Rectangle2D.Float(0F, 0F, (float)getSize().width, (float)getSize().height);
-//					g2d.setColor(backgroundColor);
-//					g2d.fill(background);
-				//end	
-					
-				//Drawing Test Line
-//					int[] floor = {0,getSize().height,getSize().width,getSize().height};
-//					Line2D.Float ln = new Line2D.Float(floor[0],floor[1],floor[2],floor[3]);
-//					int Line = 10;
-//					g2d.setColor(LineColor);
-//					g2d.setStroke(new BasicStroke(Line));
-//					g2d.draw(ln);
-				//End
+
 					
 				//Drawing First Map
 					
 					for(int y=0;y<levelone.length;y++){
-							int ypos = (int) ((25*y) - cameraY);
+							int ypos = (int) ((blockSize*y) - cameraY);
 						   for(int x=0;x<levelone[0].length;x++){
-							   int xpos = (int) ((25*x)- cameraX);
+							   int xpos = (int) ((blockSize*x)- cameraX);
 						     switch(levelone[y][x]){
 						     	//switch is compares x and y with each case, case
 						      case 0:
 						    	 GradientPaint gp = new GradientPaint(0F, 0F, Color.gray, 450F, 450F, Color.white, true);
 						    	 g2d.setPaint(gp);
-						    	 g2d.fillRect(xpos,ypos,25,25);
+						    	 g2d.fillRect(xpos,ypos,blockSize,blockSize);
 						       break;
 						       //break == break out of the loop so the other code doesn't get ran
 						      case 1:
 						    	  g2d.setColor(Color.black);
-						    	  g2d.fillRect(xpos,ypos,25,25);
+						    	  g2d.fillRect(xpos,ypos,blockSize,blockSize);
 						       break;
 						      case 2: 
 						    	  g2d.setColor(Color.blue);
-						    	  g2d.fillRect(xpos,ypos,25,25);
+						    	  g2d.fillRect(xpos,ypos,blockSize,blockSize);
 						       break;
 						     }
 						   }  
 						}
-			//cute but not what im looking for
-					
-					
-//					GeneralPath fl = new GeneralPath();
-//					fl.moveTo(10F, 10F);
-//					fl.lineTo(485F, 10F);
-//					fl.lineTo(485F, 460F);
-//					fl.lineTo(450F, 460F);
-//					fl.lineTo(450, 330);
-//					fl.lineTo(380, 330);
-//					fl.lineTo(380F, 460F);
-//					fl.lineTo(10F, 460F);
-//					fl.closePath();
-//					g2d.fill(fl);
-				//end
-				
+			//end
+			//Drawing the Person
+					Rectangle Person = new Rectangle(300, (int)cameraY, 100, 100);
+					g2d.setColor(Color.black);
+					g2d.fill(Person);
 			//end
 		}
 
 		@Override
 		public void keyPressed(KeyEvent arg0) {
-			
-			if(arg0.getKeyCode() == KeyEvent.VK_D){
-				ButtonD = true;
-			}
-			if(arg0.getKeyCode() == KeyEvent.VK_A){
-				ButtonA = true;
-			}
-			
-			if(arg0.getKeyCode() == KeyEvent.VK_W){
-				ButtonW = true;
-			}
-			if(arg0.getKeyCode() == KeyEvent.VK_S){
-				ButtonS = true;
-			}
-			if(arg0.getKeyCode() == KeyEvent.VK_SPACE){
-				ButtonSpace = true;
-			}
-			if(arg0.getKeyCode() == KeyEvent.VK_P){
-				ButtonP = true;
-			}
-			
+			//button Mapping
+				if(arg0.getKeyCode() == KeyEvent.VK_D){
+					ButtonD = true;
+				}
+				if(arg0.getKeyCode() == KeyEvent.VK_A){
+					ButtonA = true;
+				}
+				
+				if(arg0.getKeyCode() == KeyEvent.VK_W){
+					ButtonW = true;
+				}
+				if(arg0.getKeyCode() == KeyEvent.VK_S){
+					ButtonS = true;
+				}
+				if(arg0.getKeyCode() == KeyEvent.VK_SPACE){
+					ButtonSpace = true;
+				}
+			//end
 		}
 
 		@Override
 		public void keyReleased(KeyEvent arg0) {
-			
-			if(arg0.getKeyCode() == KeyEvent.VK_D){
-				ButtonD = false;
-			}
-			
-			if(arg0.getKeyCode() == KeyEvent.VK_A){
-				ButtonA = false;
-			}
-			
-			if(arg0.getKeyCode() == KeyEvent.VK_W){
-				ButtonW = false;
-			}
-			
-			if(arg0.getKeyCode() == KeyEvent.VK_S){
-				ButtonS = false;
-			}
-			if(arg0.getKeyCode() == KeyEvent.VK_SPACE){
-				ButtonSpace = false;
-			}
-			
+			//Button Mapping
+				if(arg0.getKeyCode() == KeyEvent.VK_D){
+					ButtonD = false;
+				}
+				
+				if(arg0.getKeyCode() == KeyEvent.VK_A){
+					ButtonA = false;
+				}
+				
+				if(arg0.getKeyCode() == KeyEvent.VK_W){
+					ButtonW = false;
+				}
+				
+				if(arg0.getKeyCode() == KeyEvent.VK_S){
+					ButtonS = false;
+				}
+				if(arg0.getKeyCode() == KeyEvent.VK_SPACE){
+					ButtonSpace = false;
+				}
+			//End
 		}
 
 		@Override
