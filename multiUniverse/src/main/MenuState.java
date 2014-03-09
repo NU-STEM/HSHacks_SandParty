@@ -22,13 +22,13 @@ public class MenuState extends State implements ActionListener{
 	@Override
 	public void activate(){
 		running = true;
-		JFrame myFrame = new JFrame();
+		StateManager sm = new StateManager();
 		MenuState ms = new MenuState();
-		myFrame.add(ms);
-		myFrame.setSize(500, 500);
-		myFrame.setLocationRelativeTo(null);
-		myFrame.setVisible(true);
-     	myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		sm.add(ms);
+		//myFrame.setSize(500, 500);
+		//myFrame.setLocationRelativeTo(null);
+		//myFrame.setVisible(true);
+		//myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ms.setLayout(null);
 		
 	   
@@ -79,6 +79,7 @@ public class MenuState extends State implements ActionListener{
 	
 	public void setup(StateManager m){
 		parent = m;
+		//activate();
 		//this.setLayout(null);
 	}
 	StateManager parent = null;

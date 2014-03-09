@@ -8,13 +8,16 @@ public class StateManager extends JFrame{
 	State mainMenu = null;
 	
 	public StateManager(){
+		gameLoop  = new LoopState();
+	    mainMenu  = new MenuState();
 		this.setSize(500,500);
 		this.setVisible(true);
+	    this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	public void activate(){
-		gameLoop  = new LoopState();
-		mainMenu  = new MenuState();
+//		gameLoop  = new LoopState();
+//		mainMenu  = new MenuState();
 		mainMenu.setUp(this);
 		mainMenu.setIgnoreRepaint(true);
 		gameLoop.setIgnoreRepaint(true);
