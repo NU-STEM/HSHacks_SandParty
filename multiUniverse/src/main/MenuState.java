@@ -37,7 +37,6 @@ public class MenuState extends State implements ActionListener{
 	    
 	    btn.addActionListener(this);
 	    btn.setActionCommand("Loop");
-		btn.addActionListener(this);
 	    btn.setBounds(190, 300, 120, 30);
 		ms.add(btn);
 	    
@@ -45,14 +44,12 @@ public class MenuState extends State implements ActionListener{
 	    
 	    btn2.addActionListener(this);
 	    btn2.setActionCommand("Quit");
-		btn2.addActionListener(this);
 	    btn2.setBounds(190, 350, 120, 30);
 	    
         btn3.setFont(new Font("SansSerif", Font.ITALIC, 20));
 	    
 	    btn3.addActionListener(this);
 	    btn3.setActionCommand("Credits");
-		btn3.addActionListener(this);
 	    btn3.setBounds(190, 400, 120, 30);
 		
 		
@@ -73,6 +70,8 @@ public class MenuState extends State implements ActionListener{
 	}
 	public void deactivate(){
 		btn.removeActionListener(this);
+		btn2.removeActionListener(this);
+		btn3.removeActionListener(this);
 		running = false;
 		
 	}
@@ -105,6 +104,7 @@ public class MenuState extends State implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		if("Loop".equals(arg0.getActionCommand())){
 			//parent.switchState("loop");
+			this.deactivate();
 			System.out.println("Loop Pressed!");
 		}else if("Quit".equals(arg0.getActionCommand())){
 			System.out.println("Quit Pressed!");
