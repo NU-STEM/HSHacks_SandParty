@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import executables.StateManager;
+import main.StateManager;
 
 public class MenuState extends State implements ActionListener{
 	private boolean running = true;
@@ -41,8 +41,8 @@ public class MenuState extends State implements ActionListener{
 		
 	}
 	
-	@over ride
-	public void setup(StateManager m){
+	@Override
+	public void setUp(StateManager m){
 		parent = m;
 	}
 	StateManager parent = null;
