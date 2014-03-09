@@ -38,7 +38,7 @@ public class LoopState extends State{
 					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 					};
 		//map
-		public Rectangle Rectangle = new Rectangle();
+		Rectangle Rectangle = new Rectangle(0,0,100,100);
 		final double Logic_Hertz = 60;
 		final double Target_Time_Between_Logic=(1000000000/Logic_Hertz);
 		final double Render_Hertz = 60;
@@ -57,7 +57,7 @@ public class LoopState extends State{
 				myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				myFrame.setVisible(true);
 				myFrame.setLocationRelativeTo(null);
-				myFrame.setResizable(false);
+				myFrame.setResizable(true);
 				LoopState myDeck = new LoopState();
 				myFrame.add(myDeck);
 				myFrame.add(myDeck);
@@ -120,21 +120,23 @@ public class LoopState extends State{
 				//End
 				//Drawing First Map
 					
-					for(int i=0;i<level.length;i++){
-						   for(int j=0;j<level[0].length;j++){
-						     switch(level[i][j]){
+					for(int x=0;x<level.length;x++){
+							int ypos = 25*x;
+						   for(int y=0;y<level[0].length;y++){
+							   int xpos = 25*y;
+						     switch(level[x][y]){
 						      case 0:
 						    	  g2d.setColor(Color.white);
-						    	  g2d.drawRect(i,j,WIDTH,HEIGHT);
+						    	  g2d.drawRect(x,y,xpos,ypos);
 						       break;
 						       //break == break out of the loop so the other code doesn't get ran
 						      case 1:
 						    	  g2d.setColor(Color.black);
-						    	  g2d.drawRect(i,j,WIDTH,HEIGHT);
+						    	  g2d.drawRect(x,y,xpos,ypos);
 						       break;
 						      case 2: 
 						    	  g2d.setColor(Color.blue);
-						    	  g2d.drawRect(i,j,WIDTH,HEIGHT);
+						    	  g2d.drawRect(x,y,xpos,ypos);
 						       break;
 						     }
 						   }  
