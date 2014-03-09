@@ -22,4 +22,6 @@ public class State  extends JPanel implements IState{
 		
 	}
 
+	
+
 }
