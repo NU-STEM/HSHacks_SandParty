@@ -71,7 +71,7 @@ public class LoopState extends State implements KeyListener{
 					int blockSize = 45;
 					ArrayList<Rectangle> leveloneR = new ArrayList<Rectangle>();
 					Rectangle Rectangle = new Rectangle(0,0,100,100);
-					Rectangle Person = new Rectangle(100,35*blockSize,100,100);
+					Rectangle Person = new Rectangle(100,35*blockSize,70,70);
 					final double Logic_Hertz = 60;
 					final double Target_Time_Between_Logic=(1000000000/Logic_Hertz);
 					final double Render_Hertz = 60;
@@ -151,6 +151,10 @@ public class LoopState extends State implements KeyListener{
 		
 		public void logicFunction(){
 			//button Mapping
+				int personOldX = Person.x;
+				int personOldY = Person.y;
+				int cameraOldX = (int) cameraX;
+				int cameraOldY = (int) cameraY;
 				if (ButtonD == true){			
 					cameraX += speed;
 					Person.x +=speed;
@@ -158,15 +162,17 @@ public class LoopState extends State implements KeyListener{
 				
 				if (ButtonA == true){	
 					cameraX -= speed;
+					Person.x -=speed;
 				}
 				
 				if (ButtonW == true){
 					cameraY -= speed;
-					
+					Person.y -= speed;
 				}
 				
 				if (ButtonS == true){
 					cameraY += speed;
+					Person.y += speed;
 				}
 				
 				if (ButtonSpace == true){
@@ -180,6 +186,10 @@ public class LoopState extends State implements KeyListener{
 				for(Rectangle r:leveloneR){
 					//System.out.println(Person.intersects(r));
 					if (Person.intersects(r) == true){
+						Person.x = personOldX;
+						Person.y = personOldY;
+						cameraX = cameraOldX;
+						cameraY = cameraOldY;
 						System.out.println("Hit");
 					}
 				}
@@ -215,7 +225,7 @@ public class LoopState extends State implements KeyListener{
 
 					
 					//Drawing the Person
-					Rectangle RenderPerson = new Rectangle((int)(Person.x-cameraX), (int)(Person.y-cameraY), 100, 100);
+					Rectangle RenderPerson = new Rectangle((int)(Person.x-cameraX), (int)(Person.y-cameraY), 70, 70);
 					g2d.setColor(Color.blue);
 					
 					g2d.fill(RenderPerson);
