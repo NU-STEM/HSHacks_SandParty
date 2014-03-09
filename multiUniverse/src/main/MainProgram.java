@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 //Can
 //Yoshi
 public class MainProgram {
-	public static int[] gameWindowSize = {1280,720};
+	public static int[] gameWindowSize = {1920,1080};
 	
 	public static void main(String[] args0){
 		
@@ -19,6 +19,10 @@ public class MainProgram {
 		gameWindow.setLocationRelativeTo(null);
 		gameWindow.add(gameDisplay);
 		gameDisplay.startGameLoop();
+		if (GameDisplay.gameState == 1){
+			gameWindow.setResizable(true);
+			gameWindow.setSize(1920,1080);
+		}
 	}
 	
 }	

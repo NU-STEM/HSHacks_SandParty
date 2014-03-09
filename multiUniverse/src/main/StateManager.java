@@ -12,6 +12,7 @@ public class StateManager extends JFrame{
 		this.setVisible(true);
 	    this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		if (GameDisplay.gameStates)
 	}
 	public void activate(){
 		gameLoop  = new LoopState();
