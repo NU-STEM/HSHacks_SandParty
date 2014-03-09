@@ -8,7 +8,9 @@ import javax.swing.JFrame;
 public class MainProgram {
 	public static void main(String[] args) {
 		//Frame
-			JFrame myFrame = new JFrame();
+			MenuState ms = new MenuState();
+			ms.activate();
+			
 			
 		//End
 	}
