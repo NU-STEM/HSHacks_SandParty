@@ -33,7 +33,7 @@ public class MenuState extends State implements ActionListener{
 		//myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		parent.setLayout(null);
 		
-	   
+	    
 	    
 	    btn.setFont(new Font("SansSerif", Font.ITALIC, 20));
 	    
