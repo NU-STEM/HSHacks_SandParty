@@ -70,6 +70,7 @@ public class LoopState extends State implements KeyListener{
 				//map
 					int blockSize = 45;
 					ArrayList<Rectangle> leveloneR = new ArrayList<Rectangle>();
+					//Rectangle Rectangle = new Rectangle(0,0,100,100);
 					Rectangle Person = new Rectangle(100,35*blockSize,70,70);
 					final double Logic_Hertz = 60;
 					final double Target_Time_Between_Logic=(1000000000/Logic_Hertz);
@@ -89,6 +90,13 @@ public class LoopState extends State implements KeyListener{
 					public boolean ButtonSpace = false;
 					public boolean ButtonP = false;
 					double speed = 5;
+<<<<<<< HEAD
+					private static final double JUMP_SPEED = 24;
+					private static final double GRAVITY = 1.0;
+					double time = .5;
+					
+=======
+>>>>>>> origin/master
 				//End
 		
 		public static void main(String[] args0) {
@@ -109,9 +117,14 @@ public class LoopState extends State implements KeyListener{
 		}
 		
 		
+<<<<<<< HEAD
+		public void enterGameLoop(){
+			
+=======
 		public void activate(){
 
 			System.out.println("activate complete");
+>>>>>>> origin/master
 			//Converts the 2D array into a rectangle array
 				for(int i=0; i<levelone.length ;i++){
 					int offsetY = blockSize * i;
