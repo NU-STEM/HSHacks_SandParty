@@ -79,7 +79,7 @@ public class MenuState extends State implements ActionListener{
 	}
 	
 	
-	public void setup(StateManager m){
+	public void setUp(StateManager m){
 		parent = m;
 		//activate();
 		//this.setLayout(null);
