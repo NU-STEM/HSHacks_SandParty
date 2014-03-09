@@ -70,12 +70,12 @@ public class LoopState extends State implements KeyListener{
 				//map
 					int blockSize = 45;
 					ArrayList<Rectangle> leveloneR = new ArrayList<Rectangle>();
+					Rectangle Rectangle = new Rectangle(0,0,100,100);
 					Rectangle Person = new Rectangle(100,35*blockSize,70,70);
 					final double Logic_Hertz = 60;
 					final double Target_Time_Between_Logic=(1000000000/Logic_Hertz);
 					final double Render_Hertz = 60;
 					final double Target_Time_Between_Render = (1000000000/Render_Hertz);
-					private boolean OnGround = true;
 					double lastLogicTime = System.nanoTime();
 					double lastRenderTime = System.nanoTime();
 					boolean running = true;
@@ -89,9 +89,10 @@ public class LoopState extends State implements KeyListener{
 					public boolean ButtonSpace = false;
 					public boolean ButtonP = false;
 					double speed = 5;
+					
 				//End
 		
-		public static void main(String[] args0) {
+		public static void main(String[] args) {
 			
 				//Making the Panel and adding the frame
 					JFrame myFrame= new JFrame("multiUniverse");
@@ -104,14 +105,12 @@ public class LoopState extends State implements KeyListener{
 					myFrame.add(myDeck);
 					myFrame.paintComponents(myFrame.getGraphics());
 					myFrame.addKeyListener(myDeck);
-					myDeck.activate();
+					myDeck.enterGameLoop();
 				//end
 		}
 		
-		
-		public void activate(){
-
-			System.out.println("activate complete");
+		public void enterGameLoop(){
+			
 			//Converts the 2D array into a rectangle array
 				for(int i=0; i<levelone.length ;i++){
 					int offsetY = blockSize * i;
@@ -147,12 +146,10 @@ public class LoopState extends State implements KeyListener{
 		}
 		
 		public void renderFunction(double Interpolation){
-			System.out.println("render");
 			this.repaint();
 		}
 		
 		public void logicFunction(){
-			System.out.println("logic active");
 			//button Mapping
 				int personOldX = Person.x;
 				int personOldY = Person.y;
@@ -179,16 +176,8 @@ public class LoopState extends State implements KeyListener{
 				}
 				
 				if (ButtonSpace == true){
-					while (ButtonSpace == true){
-							cameraY -=speed;
-							Person.y -= speed;
-						}
-					}
 					
-					
-					
-		//}
-				
+				}
 				
 				if (ButtonSpace == false){
 					
@@ -212,7 +201,6 @@ public class LoopState extends State implements KeyListener{
 		}
 		
 		public void paint (Graphics g){
-			System.out.println("paint start");
 				//Graphics
 					super.paint(g);
 					Graphics2D g2d = (Graphics2D)g;
@@ -246,7 +234,6 @@ public class LoopState extends State implements KeyListener{
 
 		@Override
 		public void keyPressed(KeyEvent arg0) {
-			System.out.println("key registered");
 			//button Mapping
 				if(arg0.getKeyCode() == KeyEvent.VK_D){
 					ButtonD = true;
