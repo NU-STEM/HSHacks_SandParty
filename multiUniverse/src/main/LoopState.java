@@ -88,7 +88,12 @@ public class LoopState extends State implements KeyListener{
 					public boolean ButtonS = false;
 					public boolean ButtonSpace = false;
 					public boolean ButtonP = false;
-					double speed = 5;
+					public double speed = 5;
+					public double speed2 = 5;
+					public double gravity = 9.81;
+					public double height = 0;
+					public double Vy =500-(height*100);
+					public long previous= 0, start=System.nanoTime();
 				//End
 		
 		public static void main(String[] args0) {
@@ -158,6 +163,7 @@ public class LoopState extends State implements KeyListener{
 				int personOldY = Person.y;
 				int cameraOldX = (int) cameraX;
 				int cameraOldY = (int) cameraY;
+				
 				if (ButtonD == true){			
 					cameraX += speed;
 					Person.x +=speed;
@@ -178,39 +184,75 @@ public class LoopState extends State implements KeyListener{
 					Person.y += speed;
 				}
 				
+				if (ButtonSpace == true && ButtonD == true){
+					while(true){
+					      start= System.nanoTime();  
+					      if(previous != 0){
+					        double delta = start-previous;
+					        speed -= (delta/1000000000)  * gravity;
+					        speed2 += (delta/(1000000000 * 100))  * gravity;
+					        cameraY -= (delta/10000000) *speed;
+					        Person.y -= (delta/10000000) *speed;
+					        cameraX += (delta/10000000) *speed2;
+					        Person.x += (delta/10000000) *speed2;
+					        paint(this.getGraphics());
+					        try {
+					            Thread.sleep(10);
+					        } catch (InterruptedException e) {
+					            e.printStackTrace();
+					        }
+					      }
+					      
+					      if(cameraY < 0){
+					          cameraY=0;
+					          speed=10.0; 
+					      }
+//					      if (hit == true){
+//					    	  
+//					      }
+					      previous= start;
+					    }
+				}
+				
 				if (ButtonSpace == true){
-					while (ButtonSpace == true){
-							cameraY -=speed;
-							Person.y -= speed;
-						}
-					}
-					
-					
-					
-		//}
-				
-				
+					while(true){
+					      start= System.nanoTime();  
+					      if(previous != 0){
+					        double delta = start-previous;
+					        speed -= (delta/1000000000)  * gravity; 
+					        cameraY -= (delta/10000000) *speed;
+					        Person.y -= (delta/10000000) *speed;
+					        paint(this.getGraphics());
+					        try {
+					            Thread.sleep(10);
+					        } catch (InterruptedException e) {
+					            e.printStackTrace();
+					        }
+					      }  
+					      if(cameraY < 0){
+					          cameraY=0;
+					          speed=10.0; 
+					      }      
+					      previous= start;
+					    }
+				}
+
+		//}		
 				if (ButtonSpace == false){
 					
 				}
-				
-				for(Rectangle r:leveloneR){
-					//System.out.println(Person.intersects(r));
-					if (Person.intersects(r) == true){
-						Person.x = personOldX;
-						Person.y = personOldY;
-						cameraX = cameraOldX;
-						cameraY = cameraOldY;
-						System.out.println("Hit");
+			//Checks for intersection
+					for(Rectangle r:leveloneR){
+						//System.out.println(Person.intersects(r));
+						if (Person.intersects(r) == true){
+							Person.x = personOldX;
+							Person.y = personOldY;
+							cameraX = cameraOldX;
+							cameraY = cameraOldY;
+						}
 					}
-				}
-				
 			//end
-			//cameraX++;
-			//cameraY--;
-			
-		}
-		
+		}		
 		public void paint (Graphics g){
 			System.out.println("paint start");
 				//Graphics
