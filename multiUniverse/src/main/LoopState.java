@@ -97,7 +97,7 @@ public class LoopState extends State implements KeyListener{
 					boolean hit = false;
 				//End
 		
-/*		public static void main(String[] args0) {
+	public static void main(String[] args0) {
 			
 				//Making the Panel and adding the frame
 					JFrame myFrame= new JFrame("multiUniverse");
@@ -113,7 +113,7 @@ public class LoopState extends State implements KeyListener{
 					myDeck.activate();
 				//end
 		}
-*/		
+		
 		
 		public void activate(){
 
