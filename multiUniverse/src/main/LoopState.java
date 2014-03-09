@@ -89,10 +89,9 @@ public class LoopState extends State implements KeyListener{
 					public boolean ButtonSpace = false;
 					public boolean ButtonP = false;
 					double speed = 5;
-					
 				//End
 		
-		public static void main(String[] args) {
+		public static void main(String[] args0) {
 			
 				//Making the Panel and adding the frame
 					JFrame myFrame= new JFrame("multiUniverse");
@@ -105,12 +104,14 @@ public class LoopState extends State implements KeyListener{
 					myFrame.add(myDeck);
 					myFrame.paintComponents(myFrame.getGraphics());
 					myFrame.addKeyListener(myDeck);
-					myDeck.enterGameLoop();
+					myDeck.activate();
 				//end
 		}
 		
-		public void enterGameLoop(){
-			
+		
+		public void activate(){
+
+			System.out.println("activate complete");
 			//Converts the 2D array into a rectangle array
 				for(int i=0; i<levelone.length ;i++){
 					int offsetY = blockSize * i;
@@ -146,10 +147,12 @@ public class LoopState extends State implements KeyListener{
 		}
 		
 		public void renderFunction(double Interpolation){
+			System.out.println("render");
 			this.repaint();
 		}
 		
 		public void logicFunction(){
+			System.out.println("logic active");
 			//button Mapping
 				int personOldX = Person.x;
 				int personOldY = Person.y;
@@ -201,6 +204,7 @@ public class LoopState extends State implements KeyListener{
 		}
 		
 		public void paint (Graphics g){
+			System.out.println("paint start");
 				//Graphics
 					super.paint(g);
 					Graphics2D g2d = (Graphics2D)g;
@@ -234,6 +238,7 @@ public class LoopState extends State implements KeyListener{
 
 		@Override
 		public void keyPressed(KeyEvent arg0) {
+			System.out.println("key registered");
 			//button Mapping
 				if(arg0.getKeyCode() == KeyEvent.VK_D){
 					ButtonD = true;

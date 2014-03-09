@@ -16,18 +16,15 @@ public class StateManager extends JFrame{
 	public void activate(){
 		gameLoop  = new LoopState();
 		mainMenu  = new MenuState();
-		mainMenu.setUp(this);
-		this.paintComponents(this.getGraphics());
+		gameLoop.setUp(this);
 
 		mainMenu.setIgnoreRepaint(true);
-		gameLoop.setIgnoreRepaint(true);
-		
+		//gameLoop.setIgnoreRepaint(true);
 		
 		this.setIgnoreRepaint(true);
 		currentState = mainMenu;
 		this.add(currentState);
 		currentState.setUp(this);
-		this.paintComponents(this.getGraphics());
 		
 		while(true){
 			currentState.activate();
@@ -45,22 +42,28 @@ public class StateManager extends JFrame{
 			currentState = mainMenu;
 			this.add(currentState);
 			lastState.deactivate();
-			this.repaint();
-			this.repaint();
-			this.paintComponents(this.getGraphics());
+
 		}
 		if (state.equals("loop")){
 			System.out.println("change called");
 			State lastState =currentState;
+			
 			this.remove(lastState);
-			currentState = mainMenu;
+			currentState = gameLoop;
 			this.add(currentState);
-			currentState.setVisible(true);
-			//mainMenu.activate();
-			//mainMenu.repaint(0);
 			lastState.deactivate();
-			this.repaint();
-			this.paintComponents(this.getGraphics());
+			currentState.activate();
+			
+			
+			//currentState.setVisible(true);
+			
+			
+			
+			
+			//currentState.repaint(0);
+			
+			//this.repaint();
+			//this.paintComponents(this.getGraphics());
 		}
 	}
 	

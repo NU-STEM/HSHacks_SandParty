@@ -69,6 +69,7 @@ public class MenuState extends State implements ActionListener{
 	
 	public void setUp(StateManager m){
 		parent = m;
+		System.out.println("setup complete-menu");
 	}
 	public void paintComponent(Graphics g){
 		//super.paintComponent(g);
@@ -81,7 +82,7 @@ public class MenuState extends State implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if("Loop".equals(arg0.getActionCommand())){
-			//parent.switchState("loop");
+			parent.switchState("loop");
 			this.deactivate();
 			System.out.println("Loop Pressed!");
 		}else if("Quit".equals(arg0.getActionCommand())){
