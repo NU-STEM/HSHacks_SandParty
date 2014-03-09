@@ -8,39 +8,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+
 
 
 
 public class MenuState extends State implements ActionListener{
 	private boolean running = true;
-	private int x = 0;
 	private JButton btn = new JButton("Play");
 	private JButton btn2 = new JButton("Quit");
 	private JButton btn3 = new JButton("Credits");
+	private StateManager parent = null;
 	
-	StateManager parent = null;
 	@Override
 	public void activate(){
 		running = true;
-		//StateManager sm = new StateManager();
-		//MenuState ms = new MenuState();
-		parent.add(this);
-		//myFrame.setSize(500, 500);
-		//myFrame.setLocationRelativeTo(null);
-		//myFrame.setVisible(true);
-		//myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		parent.setLayout(null);
 		
-	    
-	    
+		this.setLayout(null);
+		
 	    btn.setFont(new Font("SansSerif", Font.ITALIC, 20));
-	    
+
 	    btn.addActionListener(this);
 	    btn.setActionCommand("Loop");
 	    btn.setBounds(190, 300, 120, 30);
-	    parent.add(btn);
 	    
         btn2.setFont(new Font("SansSerif", Font.ITALIC, 20));
 	    
@@ -55,9 +44,9 @@ public class MenuState extends State implements ActionListener{
 	    btn3.setBounds(190, 400, 120, 30);
 		
 		
-	    parent.add(btn);
-	    parent.add(btn2);
-	    parent.add(btn3);
+	    this.add(btn);
+	    this.add(btn2);
+	    this.add(btn3);
 		while(running){
 			try {
 				Thread.sleep(500);
@@ -65,7 +54,6 @@ public class MenuState extends State implements ActionListener{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			x++;
 			this.repaint();
 			//System.out.println("repaint called");
 		}
@@ -81,20 +69,7 @@ public class MenuState extends State implements ActionListener{
 	
 	public void setUp(StateManager m){
 		parent = m;
-		//activate();
-		//this.setLayout(null);
 	}
-	//parent = null;
-	//JButton btn = new JButton("Play");
-	
-//	public void paint(Graphics g){
-//		super.paint(g);
-//		Graphics2D g2d = (Graphics2D)g;
-//		g2d.setColor(new Color(0.5f,0.0f,0.5f));
-//		g2d.fillRect(x, 0, 20, 20);
-//		
-		//System.out.println("Paint Called");
-//	}
 	public void paintComponent(Graphics g){
 		//super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;

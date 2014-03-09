@@ -17,8 +17,12 @@ public class StateManager extends JFrame{
 		gameLoop  = new LoopState();
 		mainMenu  = new MenuState();
 		mainMenu.setUp(this);
+		this.paintComponents(this.getGraphics());
+
 		mainMenu.setIgnoreRepaint(true);
 		gameLoop.setIgnoreRepaint(true);
+		
+		
 		this.setIgnoreRepaint(true);
 		currentState = mainMenu;
 		this.add(currentState);
@@ -27,6 +31,7 @@ public class StateManager extends JFrame{
 		
 		while(true){
 			currentState.activate();
+			
 			System.out.println("main Finished");
 		}
 		
